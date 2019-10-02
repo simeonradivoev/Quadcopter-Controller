@@ -3,6 +3,8 @@ It uses PIDs for stabilizing the whole drone so that greater control is achieved
 
 It also has basic pathfinding and obstacle avoidance so it can go to a specified waypoint.
 
+[![Showcase Video](https://img.youtube.com/vi/ith8UtAxiJk/0.jpg)](https://youtu.be/ith8UtAxiJk)
+
 ![Screenshot](https://github.com/simeonradivoev/Quadcopter-Controller/raw/master/Screenshots/Screenshot.png)
 
 # How to use
