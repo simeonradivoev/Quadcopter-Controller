@@ -14,3 +14,6 @@ To cancel the auto pilot just click the right mouse button.
 
 # Credits
 The drone model is a free one I found on the interwebs. I don't remember where exactly it might have been https://free3d.com/, but I think it just might be ripped from COD MW3
+
+# Web Build
+You can try the web build here https://simeonradivoev.itch.io/physical-quadcopter-controller

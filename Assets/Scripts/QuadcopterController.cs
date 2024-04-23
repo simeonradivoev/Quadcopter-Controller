@@ -58,35 +58,19 @@ public class QuadcopterController : MonoBehaviour
 		forwardAmount = 0;
 		throttle = 0;
 
-		if (Input.GetKey(KeyCode.Space))
-		{
-			throttle += Time.deltaTime * throttleSpeed;
-		}
+		var updown = Input.GetAxis("UpDown");
+		throttle += Time.deltaTime * throttleSpeed * updown;
 
-		if (Input.GetKey(KeyCode.LeftShift))
-		{
-			throttle -= Time.deltaTime * throttleSpeed;
-		}
+		var horizontal = Input.GetAxis("Horizontal");
+		var vertical = Input.GetAxis("Vertical");
+		forwardAmount += Time.deltaTime * vertical * forwardSpeed;
 
-		if (Input.GetKey(KeyCode.W))
-		{
-			forwardAmount += Time.deltaTime * forwardSpeed;
-		}
 
-		if (Input.GetKey(KeyCode.S))
+		if (!Mathf.Approximately(horizontal,0))
 		{
-			forwardAmount -= Time.deltaTime * forwardSpeed;
+			velocityContext.DesiredDirection = Quaternion.AngleAxis(Time.deltaTime * horizontal * turnSpeed, Vector3.up) * velocityContext.DesiredDirection;
 		}
-
-		if (Input.GetKey(KeyCode.A))
-		{
-			velocityContext.DesiredDirection = Quaternion.AngleAxis(Time.deltaTime * turnSpeed, Vector3.down) * velocityContext.DesiredDirection;
-		}
-
-		if (Input.GetKey(KeyCode.D))
-		{
-			velocityContext.DesiredDirection = Quaternion.AngleAxis(Time.deltaTime * turnSpeed, Vector3.up) * velocityContext.DesiredDirection;
-		}
+		
 	}
 
 	public Vector3 CalculateWorldDesiredVelocityInternal()

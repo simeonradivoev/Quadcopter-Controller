@@ -19,6 +19,7 @@ public class QuadcopterPathManager : MonoBehaviour {
 		GUILayout.Label(new GUIContent("Press '<b>P</b>' to cancel path."));
 		GUILayout.Label(new GUIContent("Press '<b>T</b>' to change cameras."));
 		GUILayout.Label(new GUIContent("<b>Scroll Wheel</b> to zoom in/out."));
+		GUILayout.Label(new GUIContent("Controller Analog Sticks Feel Great."));
 		GUILayout.EndVertical();
 
 		if (GUILayout.Button("Quit"))

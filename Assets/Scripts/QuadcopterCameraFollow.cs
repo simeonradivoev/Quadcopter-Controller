@@ -6,6 +6,7 @@ public class QuadcopterCameraFollow : MonoBehaviour {
 
 	[SerializeField] private bool followQuadcopter;
 	[SerializeField] private Vector3 cameraOffset;
+	[SerializeField] private Vector3 localOffset;
 	[SerializeField] private float distnace = 0.2f;
 	[SerializeField] private float zoomSpeed = 1f;
 	[SerializeField] private Vector2 zoomRange = new Vector2(0.2f,1f);
@@ -55,24 +56,17 @@ public class QuadcopterCameraFollow : MonoBehaviour {
 			{
 				if (pathController.FollowPath)
 				{
-					transform.position = controller.transform.position + (Quaternion.AngleAxis(yawDestination, Vector3.up) * cameraOffset.normalized * distnace);
+					transform.position = controller.transform.position + transform.TransformDirection(localOffset) + (Quaternion.AngleAxis(yawDestination, Vector3.up) * cameraOffset.normalized * distnace);
 				}
 				else
 				{
-					transform.position = controller.transform.position + Quaternion.LookRotation(controller.DesiredDirection, Vector3.up) * cameraOffset.normalized * distnace;
+					transform.position = controller.transform.position + transform.TransformDirection(localOffset) + Quaternion.LookRotation(controller.DesiredDirection, Vector3.up) * cameraOffset.normalized * distnace;
 				}
 
 				transform.LookAt(controller.transform);
 
-				if (Input.GetKey(KeyCode.A))
-				{
-					this.yawDestination += Time.deltaTime * controller.TurnSpeed;
-				}
-
-				if (Input.GetKey(KeyCode.D))
-				{
-					this.yawDestination -= Time.deltaTime * controller.TurnSpeed;
-				}
+				var horizontal = Input.GetAxis("Horizontal");
+				this.yawDestination += Time.deltaTime * controller.TurnSpeed * horizontal;
 			}
 		}
 	}
